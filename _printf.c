@@ -12,6 +12,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
+	const char *p;
 	int total;
 
 	if (format == NULL)
@@ -19,7 +20,25 @@ int _printf(const char *format, ...)
 
 	total = 0;
 	va_start(args, format);
-	/* parsing logic to be added here */
+	p = format;
+
+	while (*p)
+	{
+		if (*p != '%')
+		{
+			if (write(1, p, 1) == -1)
+			{
+				va_end(args);
+				return (-1);
+			}
+			total++;
+			p++;
+			continue;
+		}
+
+	p++;
+	}
+
 	va_end(args);
 
 	return (total);
