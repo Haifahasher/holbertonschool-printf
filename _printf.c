@@ -14,6 +14,7 @@ int _printf(const char *format, ...)
 	va_list args;
 	const char *p;
 	int total;
+	int printed;
 
 	if (format == NULL)
 		return (-1);
@@ -37,6 +38,41 @@ int _printf(const char *format, ...)
 		}
 
 	p++;
+	switch (*p)
+		{
+		case 'c':
+			printed = print_char((char)va_arg(args, int));
+			break;
+		case 's':
+			printed = print_string(va_arg(args, char *));
+			break;
+		case '%':
+			printed = print_percent();
+			break;
+		case '\0':
+			va_end(args);
+			return (-1);
+		default:
+			if (write(1, "%", 1) == -1 ||
+			    write(1, p, 1) == -1)
+			{
+				va_end(args);
+				return (-1);
+			}
+			total += 2;
+			printed = 0;
+			break;
+		}
+
+		if (printed < 0)
+		{
+			va_end(args);
+			return (-1);
+		}
+
+		total += printed;
+		p++;
+
 	}
 
 	va_end(args);
