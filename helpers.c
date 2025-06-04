@@ -34,3 +34,14 @@ int print_string(char *s)
 		return (-1);
 	return (len);
 }
+/**
+ * print_percent - Prints a single '%' character.
+ *
+ * Return: 1 on success, or -1 on write failure.
+ */
+int print_percent(void)
+{
+	if (write(1, "%", 1) == -1)
+		return (-1);
+	return (1);
+}
