@@ -12,3 +12,25 @@ int print_char(char c)
 		return (-1);
 	return (1);
 }
+
+/**
+ * print_string - Prints a string to stdout.
+ * @s: The string to print (if NULL, prints "(null)").
+ *
+ * Return: Number of characters printed, or -1 on write failure.
+ */
+int print_string(char *s)
+{
+	int len;
+
+	if (s == NULL)
+		s = "(null)";
+
+	len = 0;
+	while (s[len])
+		len++;
+
+	if (write(1, s, len) == -1)
+		return (-1);
+	return (len);
+}
