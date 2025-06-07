@@ -5,27 +5,17 @@
 #include <unistd.h>
 
 /**
- * _printf - Prints characters to standard output based on a format string.
- * @format: The string that may contain regular characters and format tokens.
+ * _printf - Prints to stdout using a simple format.
+ * @format: String of normal chars and % tokens.
  *
- * This version only understands:
- *   %c - prints a single character
- *   %s - prints a string (if the string is NULL, it prints "(null)")
- *   %% -prints a literal '%' character
- *   %d - prints a signed decimal integer
- *   %i - prints a signed decimal integer
+ * Supports: %c, %s, %%, %d, %i.
+ * Unknown tokens print literally (e.g. "%x").
  *
- * If you give it any other token like "%x",
- * it will just print "%x" exactly as you typed it.
- *
- * Return: the total number of characters actually printed (not counting any
- * hidden null terminator), or -1 if something goes wrong (for example, if
- * format is NULL or a write() call fails).
+ * Return: Number of chars printed (excluding null byte),
+ *         or -1 on error.
  */
-
 int _printf(const char *format, ...);
 
-/* Helper functions for each supported conversion */
 int print_char(char c);
 int print_string(char *s);
 int print_percent(void);
