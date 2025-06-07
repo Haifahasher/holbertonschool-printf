@@ -1,22 +1,20 @@
 #include "main.h"
 
 /**
- * handle_spec - Deals with one format token after '%'.
- * @spec: The character right after '%'.
- * @args: The list of extra arguments we got.
- * @count: Where we store how many chars the helper printed.
+ * handle_spec - Handle one specifier after '%'.
+ * @spec: The character after '%'.
+ * @args: The variadic argument list.
+ * @count: Where to store how many chars the helper printed.
  *
- * If spec is:
- *   'c' - print a single char
- *   's' - print a string (or "(null)" if NULL)
- *   '%' - print '%'
- *   'd' - print a signed decimal integer
- *   'i' - print a signed decimal integer
- *   '\0' - format ended with lone '%', that's an error
- * Otherwise - print '%' and the spec char literally.
+ * spec = 'c' → print_char
+ * spec = 's' → print_string
+ * spec = '%' → print_percent
+ * spec = 'd'/'i' → print_integer
+ * spec = '\0' → error
+ * otherwise → write "%<spec>" literally
  *
- * Return: 2 if it wrote "%<spec>",
- *         0 if a helper did the writing,
+ * Return: 2 if it printed "%<spec>",
+ *         0 if a helper did the printing,
  *        -1 on error.
  */
 static int handle_spec(char spec, va_list args, int *count)
@@ -53,12 +51,13 @@ static int handle_spec(char spec, va_list args, int *count)
 }
 
 /**
- * _printf - Prints characters to stdout based on a format string.
- * @format: May contain literal chars and format tokens.
+ * _printf - Prints to stdout according to a format string.
+ * @format: String of normal chars and % tokens.
  *
- * Supported tokens: %c, %s, %%, %d, %i. Unknown ones print literally.
+ * Supports: %c, %s, %%, %d, %i.
+ * Unknown tokens print literally (e.g. "%x").
  *
- * Return: Total characters printed (not counting a hidden '\0'),
+ * Return: Number of chars printed (excluding null byte),
  *         or -1 on error.
  */
 int _printf(const char *format, ...)
@@ -84,7 +83,9 @@ int _printf(const char *format, ...)
 			continue;
 		}
 
+		/* Skip '%' and process the next char */
 		p++;
+		printed = 0;
 		extra = handle_spec(*p, args, &printed);
 		if (extra < 0)
 			return (va_end(args), -1);
