@@ -1,15 +1,23 @@
 #include "main.h"
 
 /**
- * handle_spec - Process one format specifier.
- * @spec: The character after '%'.
- * @args: The variadic argument list.
- * @count: Pointer to store how many characters the helper printed.
+ * handle_spec - Deals with one format token after '%'.
+ * @spec: The character right after '%'.
+ * @args: The list of extra arguments we got.
+ * @count: Where we store how many chars the helper printed.
  *
- * Returns:
- *   2 if it fell back to writing "%<spec>" literally,
- *   0 if a helper ran (its count is in *count),
- *  -1 on error.
+ * If spec is:
+ *   'c' - print a single char
+ *   's' - print a string (or "(null)" if NULL)
+ *   '%' - print '%'
+ *   'd' - print a signed decimal integer
+ *   'i' - print a signed decimal integer
+ *   '\0' - format ended with lone '%', that's an error
+ * Otherwise - print '%' and the spec char literally.
+ *
+ * Return: 2 if it wrote "%<spec>",
+ *         0 if a helper did the writing,
+ *        -1 on error.
  */
 static int handle_spec(char spec, va_list args, int *count)
 {
