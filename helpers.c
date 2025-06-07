@@ -48,52 +48,31 @@ int print_percent(void)
 
 /**
  * print_integer - Prints a signed integer in base 10.
- * @n: The integer to print.
+ * @n: Integer to print.
  *
- * Return: Number of characters printed (including '-'), or
- *         -1 on write failure.
+ * Return: Number of chars printed (incl. '-'), or -1 on failure.
  */
 int print_integer(int n)
 {
-	unsigned int abs_val;
-	char buffer[12];
-	int i;
-	int count;
+	unsigned int abs;
+	int cnt = 0, rv;
 
 	if (n < 0)
 	{
 		if (write(1, "-", 1) == -1)
 			return (-1);
-		count = 1;
-		abs_val = (unsigned int)(-1 * (long)n);
+		cnt++;
+		abs = (unsigned int)(-1 * (long)n);
 	}
 	else
 	{
-		count = 0;
-		abs_val = (unsigned int)n;
+		abs = (unsigned int)n;
 	}
 
-	if (abs_val == 0)
-	{
-		if (write(1, "0", 1) == -1)
-			return (-1);
-		return (count + 1);
-	}
+	rv = print_digits(abs);
+	if (rv < 0)
+		return (-1);
+	cnt += rv;
 
-	i = 0;
-	while (abs_val > 0)
-	{
-		buffer[i] = (char)('0' + (abs_val % 10));
-		abs_val /= 10;
-		i++;
-	}
-
-	while (i-- > 0)
-	{
-		if (write(1, &buffer[i], 1) == -1)
-			return (-1);
-		count++;
-	}
-
-	return (count);
+	return (cnt);
 }
