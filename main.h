@@ -15,9 +15,10 @@
  *   %d - prints a signed decimal integer
  *   %i - prints a signed decimal integer
  *
- * If you give it any other token like "%x", it will just print "%x" exactly as you typed it.
+ * If you give it any other token like "%x",
+ * it will just print "%x" exactly as you typed it.
  *
- * Returns the total number of characters actually printed (not counting any
+ * Return: the total number of characters actually printed (not counting any
  * hidden null terminator), or -1 if something goes wrong (for example, if
  * format is NULL or a write() call fails).
  */
