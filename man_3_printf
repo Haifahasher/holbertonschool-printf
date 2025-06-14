@@ -88,8 +88,5 @@ _printf("Letter: %c, Number: %d", 'A', 10);
 .BR printf (3),
 .BR write (2)
 
-.SH AUTHORS
-Developed with precision and care by:
-.br
-Najwa Aljunaidel & Haifa -  Holberton School, June 2025
-
+.SH AUTHORS Conceived and implemented by:
+Najwa Aljunaidel & Haifa - Holberton School, June 2025
