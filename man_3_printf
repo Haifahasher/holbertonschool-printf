@@ -1,0 +1,95 @@
+.\" Manual page for custom _printf function
+.TH _PRINTF 3 "June 2025" "Najwa & Haifa" "C Library Functions"
+
+.SH NAME
+_printf \- A handcrafted C function that mimics the behavior of printf
+
+.SH SYNOPSIS
+.B #include "main.h"
+.br
+int _printf(const char *format, ...);
+
+.SH DESCRIPTION
+.B _printf
+is a simplified re-creation of the standard C function
+.B printf,
+designed to print formatted output to the standard output stream.
+
+It takes a format string followed by a variable number of arguments and prints each according to the specified format.
+
+This custom version was developed for educational purposes at Holberton School to explore how variadic functions and low-level I/O work.
+
+.SH SUPPORTED FORMAT SPECIFIERS
+.TP
+.B %c
+Prints a single character
+.TP
+.B %s
+Prints a null-terminated string
+.TP
+.B %d, %i
+Prints a signed decimal integer
+.TP
+.B %%
+Prints a literal percent sign (%)
+.TP
+Unknown specifiers (e.g., %x) are printed as-is, preserving the original characters
+
+.SH IMPLEMENTATION NOTES
+This version avoids using standard library printing functions.
+It relies on:
+
+- Variadic argument macros from
+.B stdarg.h
+- Direct output with the
+.B write()
+system call
+- Modular helper functions stored in
+.B helpers.c
+
+.SH FILE STRUCTURE
+.TP
+.B _printf.c
+Main logic: handles parsing and specifier matching
+.TP
+.B helpers.c
+Functions like print_char, print_string, print_integer, etc.
+.TP
+.B main.h
+Contains all function prototypes
+.TP
+.B test/main.c
+Sample test file with various format cases
+.TP
+.B man_3_printf
+This manual file you're reading now
+
+.SH RETURN VALUE
+Returns the number of characters successfully printed (excluding the null byte).
+Returns -1 if an error occurs (e.g., format string is NULL, or a write fails).
+
+.SH EXAMPLES
+.B Example 1:
+_printf("Hello, %s!", "Najwa");
+.br
+ Output: Hello, Najwa!
+
+.B Example 2:
+_printf("Score: %d%%", 98);
+.br
+ Output: Score: 98%
+
+.B Example 3:
+_printf("Letter: %c, Number: %d", 'A', 10);
+.br
+ Output: Letter: A, Number: 10
+
+.SH SEE ALSO
+.BR printf (3),
+.BR write (2)
+
+.SH AUTHORS
+Developed with precision and care by:
+.br
+Najwa Aljunaidel & Haifa -  Holberton School, June 2025
+
