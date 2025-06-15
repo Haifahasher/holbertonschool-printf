@@ -33,7 +33,7 @@ int _printf(const char *format, ...);
 
 ---
 
-##Requirements
+## Requirements
 
 - All code is written in C and compiled on Ubuntu 22.04 LTS using:
   gcc version 11.4.0 with the flags: -Wall -Werror -Wextra -pedantic
