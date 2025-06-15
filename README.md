@@ -33,6 +33,27 @@ int _printf(const char *format, ...);
 
 ---
 
+Requirements
+
+- All code is written in C and compiled on Ubuntu 22.04 LTS using:
+  gcc version 11.4.0 with the flags: -Wall -Werror -Wextra -pedantic
+
+- The project was developed and tested in the Holberton School Sandbox environment.
+
+- The code follows the Betty style guide for C programming:
+  * Proper indentation and formatting
+  * Clear function descriptions
+  * Consistent naming conventions
+
+- No use of global variables.
+
+- All function prototypes are located in the lists.h header file.
+
+- Memory management is handled properly; no memory leaks allowed.
+
+- Each function is tested using provided main files and standard test cases.
+---
+
 ## Project Files
 
 ```text
