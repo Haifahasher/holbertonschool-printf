@@ -66,7 +66,21 @@ int _printf(const char *format, ...);
 ```
 
 ---
+## Installation
 
+To clone the repository locally, use the following commands:
+
+git clone https://github.com/Haifahasher/holbertonschool-printf.git
+cd holbertonschool-printf
+---
+## Usage
+
+Include the header file in your source code to use the custom _printf function:
+
+#include "main.h"
+
+You can now call _printf just like the standard printf function.
+---
 ## Compilation
 
 ```bash
