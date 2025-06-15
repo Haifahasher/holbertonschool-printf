@@ -41,9 +41,9 @@ int _printf(const char *format, ...);
 - The project was developed and tested in the Holberton School Sandbox environment.
 
 - The code follows the Betty style guide for C programming:
-  * Proper indentation and formatting
-  * Clear function descriptions
-  * Consistent naming conventions
+  - Proper indentation and formatting
+  - Clear function descriptions
+  - Consistent naming conventions
 
 - No use of global variables.
 
