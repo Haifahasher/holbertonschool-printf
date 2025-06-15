@@ -47,11 +47,12 @@ int _printf(const char *format, ...);
 
 - No use of global variables.
 
-- All function prototypes are located in the lists.h header file.
+- All function prototypes are located in the main.h header file.
 
 - Memory management is handled properly; no memory leaks allowed.
 
 - Each function is tested using provided main files and standard test cases.
+
 ---
 
 ## Project Files
