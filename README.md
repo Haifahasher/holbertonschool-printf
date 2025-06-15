@@ -48,7 +48,7 @@ int _printf(const char *format, ...);
 ## Compilation
 
 ```bash
-gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o my_printf
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o printf
 ```
 
 ---
