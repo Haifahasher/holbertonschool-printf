@@ -5,7 +5,7 @@
 # <a><img src="https://upload.wikimedia.org/wikipedia/commons/3/35/The_C_Programming_Language_logo.svg" width=3% height=3%></img></a> _printf
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?center=true&size=28&duration=3000&pause=1000&color=FF69B4&width=435&lines=printf+—+by+Najwa+and+Haifa" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.herokuapp.com?center=true&size=28&duration=3000&pause=1000&color=FF69B4&width=435&lines=—+by+Najwa+and+Haifa" alt="Typing SVG" />
 </p>
 
 ---
