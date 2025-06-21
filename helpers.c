@@ -1,41 +1,5 @@
 #include "main.h"
 
-#include "main.h"
-
-/**
- * print_digits - Writes an unsigned int as decimal digits.
- * @n: The number to print.
- *
- * Return: Number of digits printed, or -1 on error.
- */
-static int print_digits(unsigned int n)
-{
-	char buf[12];
-	int i = 0, cnt = 0;
-
-	if (n == 0)
-	{
-		if (write(1, "0", 1) == -1)
-			return (-1);
-		return (1);
-	}
-
-	while (n)
-	{
-		buf[i++] = '0' + (n % 10);
-		n /= 10;
-	}
-
-	while (i-- > 0)
-	{
-		if (write(1, &buf[i], 1) == -1)
-			return (-1);
-		cnt++;
-	}
-
-	return (cnt);
-}
-
 /**
  * print_char - Prints a single character.
  * @c: The character to print.
@@ -44,7 +8,9 @@ static int print_digits(unsigned int n)
  */
 int print_char(char c)
 {
-	return (write(1, &c, 1) == -1 ? -1 : 1);
+if (write(1, &c, 1) == -1)
+return (-1);
+return (1);
 }
 
 /**
@@ -55,15 +21,15 @@ int print_char(char c)
  */
 int print_string(char *s)
 {
-	int len = 0;
+int len = 0;
 
-	if (s == NULL)
-		s = "(null)";
-	while (s[len])
-		len++;
-	if (write(1, s, len) == -1)
-		return (-1);
-	return (len);
+if (s == NULL)
+s = "(null)";
+while (s[len])
+len++;
+if (write(1, s, len) == -1)
+return (-1);
+return (len);
 }
 
 /**
@@ -73,7 +39,9 @@ int print_string(char *s)
  */
 int print_percent(void)
 {
-	return (write(1, "%", 1) == -1 ? -1 : 1);
+if (write(1, "%", 1) == -1)
+return (-1);
+return (1);
 }
 
 /**
@@ -85,54 +53,56 @@ int print_percent(void)
  */
 int print_integer(int n)
 {
-	unsigned int abs;
-	int cnt = 0, rv;
+unsigned int abs;
+int count = 0, rv;
 
-	if (n < 0)
-	{
-		if (write(1, "-", 1) == -1)
-			return (-1);
-		cnt++;
-		abs = (unsigned int)(-1 * (long)n);
-	}
-	else
-	{
-		abs = (unsigned int)n;
-	}
-
-	rv = print_digits(abs);
-	if (rv < 0)
-		return (-1);
-	cnt += rv;
-
-	return (cnt);
+if (n < 0)
+{
+if (write(1, "-", 1) == -1)
+return (-1);
+count++;
+abs = (unsigned int)(-1 * (long)n);
 }
+else
+{
+abs = (unsigned int)n;
+}
+
+/* Delegate digit printing to print_digits() */
+rv = print_digits(abs);
+if (rv < 0)
+return (-1);
+count += rv;
+
+return (count);
+}
+
 /**
- * print_binary - Prints an unsigned integer in binary.
- * @n: The number to print (base 2).
+ * print_binary - Prints an unsigned integer in binary (base 2).
+ * @n: The number to print.
  *
  * Return: Number of characters printed, or -1 on error.
  */
 int print_binary(unsigned int n)
 {
-    char buf[32];
-    int i = 0, count = 0;
+char buf[32];
+int i = 0, count = 0;
 
-    if (n == 0)
-        return (write(1, "0", 1) == -1 ? -1 : 1);
+if (n == 0)
+return (write(1, "0", 1) == -1 ? -1 : 1);
 
-    while (n)
-    {
-        buf[i++] = '0' + (n & 1);
-        n >>= 1;
-    }
+while (n)
+{
+buf[i++] = '0' + (n & 1);
+n >>= 1;
+}
 
-    while (i-- > 0)
-    {
-        if (write(1, &buf[i], 1) == -1)
-            return (-1);
-        count++;
-    }
+while (i-- > 0)
+{
+if (write(1, &buf[i], 1) == -1)
+return (-1);
+count++;
+}
 
-    return (count);
+return (count);
 }
