@@ -21,4 +21,5 @@ int print_string(char *s);
 int print_percent(void);
 int print_integer(int n);
 int print_binary(unsigned int n);
+int print_digits(unsigned int n);
 #endif /* MAIN_H */
