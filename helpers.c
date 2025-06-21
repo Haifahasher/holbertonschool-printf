@@ -107,3 +107,32 @@ int print_integer(int n)
 
 	return (cnt);
 }
+/**
+ * print_binary - Prints an unsigned integer in binary.
+ * @n: The number to print (base 2).
+ *
+ * Return: Number of characters printed, or -1 on error.
+ */
+int print_binary(unsigned int n)
+{
+    char buf[32];
+    int i = 0, count = 0;
+
+    if (n == 0)
+        return (write(1, "0", 1) == -1 ? -1 : 1);
+
+    while (n)
+    {
+        buf[i++] = '0' + (n & 1);
+        n >>= 1;
+    }
+
+    while (i-- > 0)
+    {
+        if (write(1, &buf[i], 1) == -1)
+            return (-1);
+        count++;
+    }
+
+    return (count);
+}

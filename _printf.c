@@ -40,6 +40,10 @@ static int handle_spec(char spec, va_list args, int *count)
 		rv = print_integer(va_arg(args, int));
 		*count = rv;
 		return (rv < 0 ? -1 : 0);
+	case 'b':
+    		rv = print_binary(va_arg(args, unsigned int));
+   	 	*count = rv;
+    		return (rv < 0 ? -1 : 0);
 	case '\0':
 		return (-1);
 	default:
